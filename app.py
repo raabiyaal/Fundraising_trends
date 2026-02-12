@@ -159,7 +159,7 @@ fig.update_layout(
     plot_bgcolor="white",
     bargap=0.35,
     legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
-    margin=dict(l=60, r=60, t=80, b=60),
+    margin=dict(l=20, r=20, t=30, b=20),
     xaxis=dict(
         title="",
         tickmode="linear",
@@ -191,14 +191,21 @@ fig.update_layout(
     ),
 )
 
-st.plotly_chart(fig, use_container_width=False, width=1400, height=800)
+st.plotly_chart(fig, use_container_width=False, width=1050, height=800)
 
 st.markdown(
     """
 <style>
-.block-container { padding-bottom: 0.5rem; }
-div[data-baseweb="select"] * {
-  cursor: pointer !important;
+/* Match Dash-like spacing */
+.block-container { padding-top: 20px; padding-bottom: 20px; }
+div[data-baseweb="select"] { width: 50%; margin: 20px auto; }
+div[data-baseweb="select"] * { cursor: pointer !important; }
+
+/* Remove gray fill in dropdown */
+div[data-baseweb="select"] > div {
+  background: #ffffff !important;
+  border-color: #c9c9c9 !important;
+  box-shadow: none !important;
 }
 </style>
 """,
