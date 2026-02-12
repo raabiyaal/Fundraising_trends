@@ -116,7 +116,7 @@ def make_figure(metric: str) -> go.Figure:
         template="simple_white",
         font=dict(family="Georgia", size=12),
         bargap=0.35,
-        margin=dict(t=30, b=20, l=20, r=80),
+        margin=dict(t=30, b=2, l=20, r=80),
         legend=dict(
             orientation="h",
             yanchor="bottom",
