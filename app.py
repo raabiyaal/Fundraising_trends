@@ -94,8 +94,6 @@ def load_data(path: Path) -> pd.DataFrame:
     return out
 
 
-st.title("High-Yield Debt Funds Closed by Year")
-
 if not DATA_PATH.exists():
     st.error(f"Data file not found: {DATA_PATH.name}")
     st.stop()
@@ -107,11 +105,14 @@ except Exception as exc:
     st.exception(exc)
     st.stop()
 
-metric = st.selectbox(
-    "Secondary y-axis",
-    ["Number of Funds", "Average Fund Size"],
-    index=0,
-)
+left, mid, right = st.columns([1, 2, 1])
+with mid:
+    metric = st.selectbox(
+        "Secondary y-axis",
+        ["Number of Funds", "Average Fund Size"],
+        index=0,
+        label_visibility="collapsed",
+    )
 
 bar_color = "#0000FF"
 line_colors = {
@@ -153,7 +154,7 @@ fig.add_trace(
 right_title = "Number of Funds Closed" if metric == "Number of Funds" else "Average Fund Size ($ millions)"
 
 fig.update_layout(
-    title="High-Yield Debt Funds Closed by Year, for the Period 2006 through 2025",
+    title="",
     font=dict(family="Georgia", size=14),
     plot_bgcolor="white",
     bargap=0.35,
@@ -165,7 +166,8 @@ fig.update_layout(
         tick0=2006,
         dtick=1,
         range=[2005.5, 2025.5],
-        tickfont=dict(size=12),
+        tickangle=0,
+        tickfont=dict(size=10),
         showgrid=False,
     ),
     yaxis=dict(
@@ -189,6 +191,6 @@ fig.update_layout(
     ),
 )
 
-st.plotly_chart(fig, use_container_width=False, width=900, height=800)
+st.plotly_chart(fig, use_container_width=False, width=450, height=800)
 
 st.caption("Source: High-Yield Fund Database, Green Street and Instructor's calculations.")
