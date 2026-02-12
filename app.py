@@ -191,6 +191,6 @@ fig.update_layout(
     ),
 )
 
-st.plotly_chart(fig, use_container_width=False, width=450, height=800)
+st.plotly_chart(fig, use_container_width=False, width=900, height=800)
 
 st.caption("Source: High-Yield Fund Database, Green Street and Instructor's calculations.")
