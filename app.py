@@ -5,6 +5,36 @@ from pathlib import Path
 
 st.set_page_config(page_title="High-Yield Debt Fundraising", layout="wide")
 
+st.markdown(
+    """
+<style>
+/* Match Dash-like spacing */
+.block-container { padding-top: 20px; padding-bottom: 20px; }
+
+/* Dropdown styling to match Dash */
+div[data-testid="stSelectbox"] { width: 50%; margin: 20px auto; }
+div[data-testid="stSelectbox"] * { cursor: pointer !important; }
+div[data-testid="stSelectbox"] > div,
+div[data-testid="stSelectbox"] > div > div {
+  background: #ffffff !important;
+  border: 1px solid #c9c9c9 !important;
+  box-shadow: none !important;
+  border-radius: 4px !important;
+}
+div[data-testid="stSelectbox"] input {
+  color: #000 !important;
+  padding: 6px 10px !important;
+  font-size: 14px !important;
+}
+
+/* Chart sizing to match Dash */
+div[data-testid="stPlotlyChart"] { width: 90% !important; margin: 0 auto !important; }
+div[data-testid="stPlotlyChart"] > div { height: 80vh !important; }
+</style>
+""",
+    unsafe_allow_html=True,
+)
+
 DATA_PATH = Path(__file__).with_name("Fundraising Data.xlsx")
 
 @st.cache_data
@@ -105,14 +135,12 @@ except Exception as exc:
     st.exception(exc)
     st.stop()
 
-left, mid, right = st.columns([1, 2, 1])
-with mid:
-    metric = st.selectbox(
-        "Secondary y-axis",
-        ["Number of Funds", "Average Fund Size"],
-        index=0,
-        label_visibility="collapsed",
-    )
+metric = st.selectbox(
+    "Secondary y-axis",
+    ["Number of Funds", "Average Fund Size"],
+    index=0,
+    label_visibility="collapsed",
+)
 
 bar_color = "#0000FF"
 line_colors = {
@@ -199,31 +227,3 @@ fig.update_layout(
 )
 
 st.plotly_chart(fig, use_container_width=True)
-
-st.markdown(
-    """
-<style>
-/* Match Dash-like spacing */
-.block-container { padding-top: 20px; padding-bottom: 20px; }
-div[data-baseweb="select"] { width: 50%; margin: 20px auto; }
-div[data-baseweb="select"] * { cursor: pointer !important; }
-
-/* Remove gray fill in dropdown */
-div[data-baseweb="select"] > div {
-  background: #ffffff !important;
-  border-color: #c9c9c9 !important;
-  box-shadow: none !important;
-}
-
-/* Graph sizing to match Dash: 90% width, 80vh height, centered */
-div[data-testid="stPlotlyChart"] {
-  width: 90% !important;
-  margin: 0 auto !important;
-}
-div[data-testid="stPlotlyChart"] > div {
-  height: 80vh !important;
-}
-</style>
-""",
-    unsafe_allow_html=True,
-)
