@@ -191,11 +191,12 @@ fig.update_layout(
     ),
 )
 
-st.plotly_chart(fig, use_container_width=False, width=900, height=800)
+st.plotly_chart(fig, use_container_width=False, width=1050, height=800)
 
 st.markdown(
     """
 <style>
+.block-container { padding-bottom: 0.5rem; }
 div[data-baseweb="select"] * {
   cursor: pointer !important;
 }
