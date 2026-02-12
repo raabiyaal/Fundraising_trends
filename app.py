@@ -155,10 +155,17 @@ right_title = "Number of Funds Closed" if metric == "Number of Funds" else "Aver
 
 fig.update_layout(
     title="",
-    font=dict(family="Georgia", size=14),
+    font=dict(family="Georgia", size=12),
     plot_bgcolor="white",
     bargap=0.35,
-    legend=dict(orientation="h", yanchor="bottom", y=1.02, xanchor="left", x=0),
+    legend=dict(
+        orientation="h",
+        yanchor="bottom",
+        y=1.02,
+        xanchor="left",
+        x=0,
+        font=dict(size=12),
+    ),
     margin=dict(l=20, r=20, t=30, b=20),
     xaxis=dict(
         title="",
@@ -191,7 +198,7 @@ fig.update_layout(
     ),
 )
 
-st.plotly_chart(fig, use_container_width=False, width=1050, height=800)
+st.plotly_chart(fig, use_container_width=True)
 
 st.markdown(
     """
@@ -206,6 +213,15 @@ div[data-baseweb="select"] > div {
   background: #ffffff !important;
   border-color: #c9c9c9 !important;
   box-shadow: none !important;
+}
+
+/* Graph sizing to match Dash: 90% width, 80vh height, centered */
+div[data-testid="stPlotlyChart"] {
+  width: 90% !important;
+  margin: 0 auto !important;
+}
+div[data-testid="stPlotlyChart"] > div {
+  height: 80vh !important;
 }
 </style>
 """,
