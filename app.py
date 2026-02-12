@@ -173,7 +173,7 @@ app.layout = html.Div(
         ),
         dcc.Graph(
             id="fundraising-graph",
-            style={"width": "90%", "height": "80vh", "margin": "auto"},
+            style={"width": "90%", "height": "70vh", "margin": "auto"},
         ),
     ]
 )
